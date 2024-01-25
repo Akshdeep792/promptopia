@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    develop:
+      watch:
+       - path: ./package.json
+         action: rebuild
+       - path: ./next.config.js
+         action: rebuild
+       - path: ./package-lock.json
+         action: rebuild
+       - path: .
+         target: /app
+         action: sync
+    environment:
+      - GOOGLE_CLIENT_SECRET=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
+      - GOOGLE_ID=426329840341-fftgb48bvpcgm5n9o40053secnrb5j5n.apps.googleusercontent.com
+      - MONGO_URI=mongodb+srv://Aksh217:Ambaesbaena@mern-projects.nttzq.mongodb.net/?retryWrites=true&w=majority
+      - NEXTAUTH_URL=http://localhost:3000/
+      - NEXTAUTH_URL_INTERNAL=http://localhost:3000/
+      - NEXT_AUTH_SECRET=Wd6my0XO0HXUu2+QLkbNZW8z2YkzKMitvCc7j/FAdQk=
+
+volumes:
+  prompts:
